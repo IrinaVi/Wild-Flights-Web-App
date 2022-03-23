@@ -1,1 +1,1 @@
-flightwebsite: gunicorn 'main:home()'
+web: gunicorn app:app
