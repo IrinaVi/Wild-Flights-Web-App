@@ -1,9 +1,6 @@
-import requests
-#import data_manager
-#import flight_data
 import flight_search
 from notification_manager import NotificationManager
-from main import User, db
+from app import User, db
 
 #list of all city codes:
 total_users = len(db.session.query(User).all())

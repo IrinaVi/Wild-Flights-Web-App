@@ -16,4 +16,4 @@ COPY ./ .
 EXPOSE 5000
 
 # command to run on container start
-CMD [ "python", "./main.py" ]
+CMD [ "python", "./app.py" ]
