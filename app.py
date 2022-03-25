@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://euviacqgmlflof:2364b9b4ccf7d5b38397f69f66e1b640422c36e31816c4f20cd54ce8f1a91642@ec2-52-201-124-168.compute-1.amazonaws.com:5432/d8lt7jnnfdvg1r'
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://bzfeospvnoyndy:0cefb46f528415a94f99a32fccf3a2285f42d3903c786a8c308b472da637bf7c@ec2-3-229-161-70.compute-1.amazonaws.com:5432/dempo515nlcd7f'
@@ -17,7 +18,7 @@ db = SQLAlchemy(app)
 ##CONFIGURE TABLES
 
 class User(db.Model):
-    __tablename__ = "flights-users"
+    __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250), nullable=False)
     email = db.Column(db.String(250), nullable=False)
