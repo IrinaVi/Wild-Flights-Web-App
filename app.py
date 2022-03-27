@@ -46,6 +46,7 @@ def home():
         )
         db.session.add(new_user)
         db.session.commit()
+
         flash("You have been successfully added!")
         return redirect(url_for('home'))
     return render_template("index.html", form = form)

@@ -1,6 +1,12 @@
 import flight_search
 from notification_manager import NotificationManager
 from app import User, db
+import psycopg2
+import os
+
+#DATABASE_URL = os.environ.get("postgresql://euviacqgmlflof:2364b9b4ccf7d5b38397f69f66e1b640422c36e31816c4f20cd54ce8f1a91642@ec2-52-201-124-168.compute-1.amazonaws.com:5432/d8lt7jnnfdvg1r")
+#con = psycopg2.connect(DATABASE_URL)
+#cur = con.cursor()
 
 #list of all city codes:
 total_users = len(db.session.query(User).all())
