@@ -5,7 +5,7 @@ account_sid = "AC4f2db0ae0b0a12337d14493b8b8bab03"
 auth_token = "d6b6a89910597c83c875344f3aa868e4"
 
 my_email = "bipboopbipbap@gmail.com"
-password = "sdfjYdkdo902!"
+password = "hog-GH7893!d!0s"
 
 class NotificationManager:
     #This class is responsible for sending notifications with the deal flight details.
