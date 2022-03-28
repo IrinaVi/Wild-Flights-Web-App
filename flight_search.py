@@ -1,8 +1,6 @@
 from urllib.request import urlopen
-
 import requests
 import datetime
-from dateutil import relativedelta
 from amadeus import Client, ResponseError
 import ssl
 
