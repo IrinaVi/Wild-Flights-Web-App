@@ -25,7 +25,7 @@ class User(db.Model):
     fly_from = db.Column(db.String(50),nullable=False)
     max_price = db.Column(db.Integer, nullable=False)
 
-db.create_all()
+#db.create_all()
 
 class EmailForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
