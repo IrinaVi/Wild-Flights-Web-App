@@ -10,13 +10,13 @@ def ssl_disabled_urlopen(endpoint):
 
 
 amadeus = Client(
-    client_id='PXkTSmD7GyxoCArWNTOIovxURzXOxqxT',
-    client_secret='KfkHcWa7zO6YdGjD',
+    client_id='P',
+    client_secret='K',
     http=ssl_disabled_urlopen
 )
 
 TEQUILA_ENDPOINT = "https://tequila-api.kiwi.com"
-TEQUILA_API = "-ayM_uomzIm2U_mhU2kATirEIRWUeP0V"
+TEQUILA_API = "-a"
 
 
 class FlightSearch:
