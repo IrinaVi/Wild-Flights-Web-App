@@ -1,18 +1,19 @@
 from urllib.request import urlopen
 import requests
 import datetime
-from amadeus import Client, ResponseError
+from amadeus import Client, ResponseError, NetworkError
 import ssl
 
 def ssl_disabled_urlopen(endpoint):
     context = ssl._create_unverified_context()
     return urlopen(endpoint, context=context)
 
-
 amadeus = Client(
-    client_id='PXkTSmD7GyxoCArWNTOIovxURzXOxqxT',
-    client_secret='KfkHcWa7zO6YdGjD',
-    http=ssl_disabled_urlopen
+    client_id='aSADPGYbw3b1pbbAdhC4KrQUdGnn08gE',
+    client_secret='vZOwM1AyNRD292sE',
+    hostname='production',
+    log_level='debug',
+    http = ssl_disabled_urlopen
 )
 
 TEQUILA_ENDPOINT = "https://tequila-api.kiwi.com"
@@ -35,10 +36,11 @@ class FlightSearch:
         headers = {"apikey": TEQUILA_API}
         query = {"term": iata_code, "location_types": "city"}
         response = requests.get(url=location_endpoint, headers=headers, params=query)
+        print("RESPONSE:", response.json())
         results = response.json()["locations"]
         city_name = results[0]["name"]
         country = results[0]['country']['name']
-        return f"{city_name}, ({country})"
+        return [city_name, country]
 
     def flight_inspiration(self, origin, max_price):
         try:
@@ -56,5 +58,6 @@ class FlightSearch:
                 }
                 flight_data.append(one_flight)
                 return flight_data
-        except:
+        except NetworkError as e:
+            print("Oops! error occurred.")
             return None

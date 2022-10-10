@@ -13,7 +13,8 @@
 			<!-- Banner -->
 				<section id="banner">
 					<h2>Wildly Cheap Flights</h2>
-					<p style="font-size: 1.8em">Subscribe to get notified when the flights from your city get cheap!</p>
+					<p style="font-size: 2em; margin-bottom:15px">Find out where your money can take you!</p>
+					<p style="font-size: 1.5em">Fill the form below to see where you can go within your budget.</p>
 					   {% with messages = get_flashed_messages() %}
 							  {% if messages %}
 								{% for message in messages %}
@@ -23,29 +24,23 @@
 						{% endwith %}
 
 					<ul class="actions special">
-						<form method="POST" action="{{ url_for('home') }}" style="display:flex;flex-direction:row;gap:20px;align-items:center;flex-wrap:wrap">
-							<div style="display:flex;flex-direction:column;gap:20px;align-items:center;flex:1 1 auto;">
-								<div style="display:flex;flex-direction:column;color:black;">
-									{{ form.name.label }}
-									{{ form.name }}
-								</div>
-								<div style="display:flex;flex-direction:column;color:black;">
-									{{ form.email.label }}
-									{{ form.email() }}
-								</div>
-							</div>
+						<form method="POST" action="/flights" style="display:flex;flex-direction:row;gap:20px;align-items:center;flex-wrap:wrap">
 							<div style="display:flex;flex-direction:column;gap:20px;align-items:center;flex:1 1 auto;">
 								<div style="display:flex;flex-direction:column;color:black;">
 									{{ form.fly_from.label }}
 									{{ form.fly_from }}
 								</div>
+							</div>
+							<div style="display:flex;flex-direction:column;gap:20px;align-items:center;flex:1 1 auto;">
 								<div style="display:flex;flex-direction:column;color:black;">
 									{{ form.max_price.label }}
 									{{ form.max_price }}
 								</div>
 							</div>
-							<div style="flex:1 1 auto;">
-								{{ form.submit}}
+							<div style="display:flex;flex-direction:column;gap:20px;align-items:center;flex:1 1 auto;">
+								<div style="display:flex;flex-direction:column;color:black;">
+									{{ form.submit}}
+								</div>
 							</div>
 						</form>
 						{{ header }}

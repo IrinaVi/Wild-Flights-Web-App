@@ -3,6 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField
 from wtforms.validators import DataRequired, URL
 from flask_sqlalchemy import SQLAlchemy
+from flight_search import FlightSearch
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -30,9 +31,14 @@ class EmailForm(FlaskForm):
     max_price = StringField("Maximum price ($)", validators=[DataRequired()])
     submit = SubmitField("Submit")
 
+class FlightsForm(FlaskForm):
+    fly_from = StringField("Your city", validators=[DataRequired()])
+    max_price = StringField("Maximum price ($)", validators=[DataRequired()])
+    submit = SubmitField("Submit")
+
 @app.route("/", methods = ["POST", "GET"])
 def home():
-    form = EmailForm()
+    form = FlightsForm()
     if request.method == "POST":
         new_user = User(
             name = request.form["name"],
@@ -46,6 +52,30 @@ def home():
         flash("You have been successfully added! We send information about the flights every Monday, please be patient =)")
         return redirect(url_for('home'))
     return render_template("index.html", form = form)
+
+@app.route("/flights", methods = ['POST'])
+def flights():
+    fly_from = request.form["fly_from"]
+    max_price = int(request.form["max_price"])
+    flight_search = FlightSearch()
+    iata_code = flight_search.get_iata_code(fly_from)
+    flight_inspiration = flight_search.flight_inspiration(iata_code,max_price)
+    print("----------------------")
+    print("FLIGHT INSPIRATION:", flight_inspiration)
+    print("----------------------")
+    all_flights = []
+    for i in range(0,1):
+        one_flight = {}
+        one_flight["Destination"] = flight_search.get_city_name(flight_inspiration[i]["Destination"])
+        one_flight["Departure Date"] = flight_inspiration[i]["Departure Date"]
+        one_flight["Return Date"] = flight_inspiration[i]["Price"]
+        one_flight["Link"] = flight_inspiration[i]["Link"]
+        all_flights.append(one_flight)
+    print("----------------------")
+    print("ALL FLIGTHS:", all_flights)
+    print("----------------------")
+    # destination = flight_search.get_city_name(flight_inspiration["Destination"])
+    return render_template("flights.html", origin = fly_from, price = max_price, flights = all_flights)
 
 if __name__ == "__main__":
     app.run(debug=True)
