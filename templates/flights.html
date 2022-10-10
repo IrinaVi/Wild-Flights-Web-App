@@ -40,7 +40,7 @@
 									<tr>
 									  <td>{{ flight["Destination"][0] }}, {{ flight["Destination"][1] }}</td>
 									  <td>{{ flight["Departure Date"] }} - {{ flight["Return Date"] }}</td>
-									  <td>{{ flight["Price"] }}</td>
+									  <td>£{{ flight["Price"] }}</td>
 										<td><a href='{{ flight["Link"] }}'>More information</a></td>
 									</tr>
 								  {% endfor %}
@@ -49,32 +49,6 @@
 							{% endif %}
 						</header>
 						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
-					</section>
-
-					<section class="box special features">
-						<div class="features-row">
-							<h3>Subscribe to know when the flights within your budget get available</h3>
-							<form method="POST" action="/">
-								<div class="mb-3">
-								<label for="name" class="form-label" style="color:#646464;">Your name</label>
-								<input type="text" class="form-control" id="name" name="name">
-							  </div>
-							  <div class="mb-3">
-								<label for="Email" class="form-label" style="color:#646464;">Email address</label>
-								<input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
-							  </div>
-							  <div class="mb-3">
-								<label for="city" class="form-label" style="color:#646464;">Your city</label>
-								<input type="text" class="form-control" id="city" aria-describedby="cityHelp" name="fly_from">
-								<div id="cityHelp" class="form-text">Enter the city you normally fly from.</div>
-							  </div>
-								<div class="mb-3">
-								<label for="budget" class="form-label" style="color:#646464;">Budget ($)</label>
-								<input type="text" class="form-control" id="budget" name="max_price">
-							  </div>
-							  <button type="submit" class="btn btn-primary">Submit</button>
-							</form>
-						</div>
 					</section>
 
 				</section>
