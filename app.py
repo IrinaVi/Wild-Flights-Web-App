@@ -64,17 +64,20 @@ def flights():
     print("FLIGHT INSPIRATION:", flight_inspiration)
     print("----------------------")
     all_flights = []
-    for i in range(0,1):
-        one_flight = {}
-        one_flight["Destination"] = flight_search.get_city_name(flight_inspiration[i]["Destination"])
-        one_flight["Departure Date"] = flight_inspiration[i]["Departure Date"]
-        one_flight["Return Date"] = flight_inspiration[i]["Price"]
-        one_flight["Link"] = flight_inspiration[i]["Link"]
-        all_flights.append(one_flight)
+    for i in range(0,6):
+        if i < len(flight_inspiration):
+            one_flight = {}
+            one_flight["Destination"] = flight_search.get_city_name(flight_inspiration[i]["Destination"])
+            one_flight["Departure Date"] = flight_inspiration[i]["Departure Date"]
+            one_flight["Return Date"] = flight_inspiration[i]["Return Date"]
+            one_flight["Price"] = flight_inspiration[i]["Price"]
+            one_flight["Link"] = flight_inspiration[i]["Link"]
+            all_flights.append(one_flight)
+        else:
+            break
     print("----------------------")
     print("ALL FLIGTHS:", all_flights)
     print("----------------------")
-    # destination = flight_search.get_city_name(flight_inspiration["Destination"])
     return render_template("flights.html", origin = fly_from, price = max_price, flights = all_flights)
 
 if __name__ == "__main__":

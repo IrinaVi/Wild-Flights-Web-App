@@ -38,7 +38,7 @@
 								  <tbody>
 								  {% for flight in flights %}
 									<tr>
-									  <td>{{ flight["Destination"] }}</td>
+									  <td>{{ flight["Destination"][0] }}, {{ flight["Destination"][1] }}</td>
 									  <td>{{ flight["Departure Date"] }} - {{ flight["Return Date"] }}</td>
 									  <td>{{ flight["Price"] }}</td>
 										<td><a href='{{ flight["Link"] }}'>More information</a></td>
