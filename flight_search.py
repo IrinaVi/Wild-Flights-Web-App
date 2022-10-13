@@ -20,7 +20,7 @@ amadeus = Client(
 )
 
 TEQUILA_ENDPOINT = "https://tequila-api.kiwi.com"
-TEQUILA_API = "-ayM_uomzIm2U_mhU2kATirEIRWUeP0V"
+TEQUILA_API = "-a"
 
 
 class FlightSearch:
