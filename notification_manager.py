@@ -1,10 +1,7 @@
 import smtplib
 
-account_sid = "AC4f2db0ae0b0a12337d14493b8b8bab03"
-auth_token = "d6b6a89910597c83c875344f3aa868e4"
-
-my_email = "bipboopbipbap@gmail.com"
-password = "hog-GH7893!d!0s"
+ACCOUNT_SID = os.environ['ACCOUNT_SID']
+AUTH_TOKEN = os.environ['ACCOUNT_TOKEN']
 
 class NotificationManager:
 

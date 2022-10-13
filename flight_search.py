@@ -3,14 +3,18 @@ import requests
 import datetime
 from amadeus import Client, ResponseError, NetworkError
 import ssl
+import os
+
+CLIENT_ID = os.environ['CLIENT_ID']
+CLIENT_SECRET = os.environ['CLIENT_SECRET']
 
 def ssl_disabled_urlopen(endpoint):
     context = ssl._create_unverified_context()
     return urlopen(endpoint, context=context)
 
 amadeus = Client(
-    client_id='aSADPGYbw3b1pbbAdhC4KrQUdGnn08gE',
-    client_secret='vZOwM1AyNRD292sE',
+    client_id=CLIENT_ID,
+    client_secret=CLIENT_SECRET,
     hostname='production',
     log_level='debug',
     http = ssl_disabled_urlopen
