@@ -32,9 +32,6 @@ def flights():
     flight_search = FlightSearch()
     iata_code = flight_search.get_iata_code(fly_from)
     flight_inspiration = flight_search.flight_inspiration(iata_code,max_price)
-    print("----------------------")
-    print("FLIGHT INSPIRATION:", flight_inspiration)
-    print("----------------------")
     all_flights = []
     for i in range(0,6):
         if i < len(flight_inspiration):
@@ -47,9 +44,6 @@ def flights():
             all_flights.append(one_flight)
         else:
             break
-    print("----------------------")
-    print("ALL FLIGTHS:", all_flights)
-    print("----------------------")
     return render_template("flights.html", origin = fly_from, price = max_price, flights = all_flights)
 
 if __name__ == "__main__":
