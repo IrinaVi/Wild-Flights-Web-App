@@ -12,7 +12,7 @@
 
 			<!-- Banner -->
 				<section id="banner">
-					<h2>Flights from {{ origin }} for up to {{ price }}</h2>
+					<h2>Flights from {{ origin }} for up to £{{ price }}</h2>
 				</section>
 
 			<!-- Results table -->
@@ -22,7 +22,7 @@
 
 					<section class="box special">
 						<header class="major">
-							{% if flights == None %}
+							{% if flights == [] %}
 							<p>Sorry, there are no flights for the given origin and budget.</p>
 							{% else %}
 

@@ -40,7 +40,6 @@ class FlightSearch:
         headers = {"apikey": TEQUILA_API}
         query = {"term": iata_code, "location_types": "city"}
         response = requests.get(url=location_endpoint, headers=headers, params=query)
-        print("RESPONSE:", response.json())
         results = response.json()["locations"]
         city_name = results[0]["name"]
         country = results[0]['country']['name']
@@ -50,6 +49,9 @@ class FlightSearch:
         try:
             response = amadeus.shopping.flight_destinations.get(origin=origin, oneWay=False, nonStop=False, viewBy="COUNTRY", maxPrice=max_price)
             all_offers = response.data
+            print("------------------")
+            print(all_offers)
+            print("------------------")
             flight_data = []
             for offer in all_offers:
                 one_flight = {
@@ -62,6 +64,6 @@ class FlightSearch:
                 }
                 flight_data.append(one_flight)
                 return flight_data
-        except NetworkError as e:
+        except:
             print("Oops! error occurred.")
             return None

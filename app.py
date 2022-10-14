@@ -17,7 +17,7 @@ db = SQLAlchemy(app)
 
 class FlightsForm(FlaskForm):
     fly_from = StringField("Your city", validators=[DataRequired()])
-    max_price = StringField("Maximum price ($)", validators=[DataRequired()])
+    max_price = StringField("Maximum price (£)", validators=[DataRequired()])
     submit = SubmitField("Submit")
 
 @app.route("/", methods = ["POST", "GET"])
@@ -34,7 +34,7 @@ def flights():
     flight_inspiration = flight_search.flight_inspiration(iata_code,max_price)
     all_flights = []
     for i in range(0,6):
-        if i < len(flight_inspiration):
+        if flight_inspiration != None and i < len(flight_inspiration):
             one_flight = {}
             one_flight["Destination"] = flight_search.get_city_name(flight_inspiration[i]["Destination"])
             one_flight["Departure Date"] = flight_inspiration[i]["Departure Date"]
