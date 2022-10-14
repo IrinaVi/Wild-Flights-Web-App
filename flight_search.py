@@ -63,7 +63,7 @@ class FlightSearch:
                     "Link": offer['links']['flightDates']
                 }
                 flight_data.append(one_flight)
-                return flight_data
+            return flight_data
         except:
             print("Oops! error occurred.")
             return None
