@@ -7,7 +7,7 @@ from flight_search import FlightSearch
 import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ['APP_CONFIG']
+# app.config['SECRET_KEY'] = os.environ['APP_CONFIG']
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://euviacqgmlflof:2364b9b4ccf7d5b38397f69f66e1b640422c36e31816c4f20cd54ce8f1a91642@ec2-52-201-124-168.compute-1.amazonaws.com:5432/d8lt7jnnfdvg1r'
 
@@ -33,7 +33,7 @@ def flights():
     iata_code = flight_search.get_iata_code(fly_from)
     flight_inspiration = flight_search.flight_inspiration(iata_code,max_price)
     all_flights = []
-    for i in range(0,6):
+    for i in range(0,11):
         if flight_inspiration != None and i < len(flight_inspiration):
             one_flight = {}
             one_flight["Destination"] = flight_search.get_city_name(flight_inspiration[i]["Destination"])

@@ -4,9 +4,10 @@ import datetime
 from amadeus import Client, ResponseError, NetworkError
 import ssl
 import os
+from decouple import config
 
-CLIENT_ID = os.environ['CLIENT_ID']
-CLIENT_SECRET = os.environ['CLIENT_SECRET']
+CLIENT_ID = config('CLIENT_ID')
+CLIENT_SECRET = config('CLIENT_SECRET')
 
 def ssl_disabled_urlopen(endpoint):
     context = ssl._create_unverified_context()
