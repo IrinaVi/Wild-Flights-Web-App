@@ -3,7 +3,6 @@ import requests
 import datetime
 from amadeus import Client, ResponseError, NetworkError
 import ssl
-import os
 from decouple import config
 
 CLIENT_ID = config('CLIENT_ID')

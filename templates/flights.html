@@ -32,7 +32,6 @@
 									  <th scope="col" class="text-center">Destination</th>
 									  <th scope="col" class="text-center">Dates</th>
 									  <th scope="col" class="text-center">Price</th>
-										<th scope="col" class="text-center">Flight Details</th>
 									</tr>
 								  </thead>
 								  <tbody>
@@ -41,7 +40,6 @@
 									  <td>{{ flight["Destination"][0] }}, {{ flight["Destination"][1] }}</td>
 									  <td>{{ flight["Departure Date"] }} - {{ flight["Return Date"] }}</td>
 									  <td>£{{ flight["Price"] }}</td>
-										<td><a href='{{ flight["Link"] }}'>More information</a></td>
 									</tr>
 								  {% endfor %}
 								  </tbody>
