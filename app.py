@@ -15,6 +15,27 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+db = SQLAlchemy(app)
+
+##CONFIGURE TABLES
+
+class User(db.Model):
+    __tablename__ = "flights-users"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(250), nullable=False)
+    email = db.Column(db.String(250), nullable=False)
+    max_price = db.Column(db.Integer, nullable=False)
+    fly_from = db.Column(db.String(50),nullable=False)
+
+# db.create_all()
+
+class EmailForm(FlaskForm):
+    name = StringField("Name", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired()])
+    fly_from = StringField("Your city", validators=[DataRequired()])
+    max_price = StringField("Maximum price", validators=[DataRequired()])
+    submit = SubmitField("Submit")
+
 class FlightsForm(FlaskForm):
     fly_from = StringField("Your city", validators=[DataRequired()])
     max_price = StringField("Maximum price (£)", validators=[DataRequired()])
@@ -43,6 +64,7 @@ def flights():
             all_flights.append(one_flight)
         else:
             break
+
     return render_template("flights.html", origin = fly_from, price = max_price, flights = all_flights)
 
 if __name__ == "__main__":
