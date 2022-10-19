@@ -7,13 +7,12 @@ from flight_search import FlightSearch
 from decouple import config
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SECRET_KEY'] = config('APP_CONFIG')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://euviacqgmlflof:2364b9b4ccf7d5b38397f69f66e1b640422c36e31816c4f20cd54ce8f1a91642@ec2-52-201-124-168.compute-1.amazonaws.com:5432/d8lt7jnnfdvg1r'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://euviacqgmlflof:2364b9b4ccf7d5b38397f69f66e1b640422c36e31816c4f20cd54ce8f1a91642@ec2-52-201-124-168.compute-1.amazonaws.com:5432/d8lt7jnnfdvg1r'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
 
 db = SQLAlchemy(app)
 
@@ -27,7 +26,7 @@ class User(db.Model):
     max_price = db.Column(db.Integer, nullable=False)
     fly_from = db.Column(db.String(50),nullable=False)
 
-# db.create_all()
+db.create_all()
 
 class EmailForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
@@ -69,6 +68,21 @@ def flights():
     else:
         email_form = EmailForm()
         return render_template("flights.html", origin = "London", price = 1000, flights = [], form = email_form)
+
+@app.route("/thank-you", methods = ["POST", "GET"])
+def subscription_submit():
+    if request.method == "POST":
+        new_user = User(
+            name = request.form["name"],
+            email = request.form['email'],
+            fly_from = request.form["fly_from"],
+            max_price = int(request.form["max_price"])
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        return render_template("thank-you.html")
+    else:
+        return render_template("thank-you.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
