@@ -68,7 +68,7 @@ def flights():
         return render_template("flights.html", origin=fly_from, price=max_price, flights=all_flights)
     else:
         email_form = EmailForm()
-    return render_template("flights.html", origin = fly_from, price = max_price, flights = None, form = email_form)
+        return render_template("flights.html", origin = "London", price = 1000, flights = [], form = email_form)
 
 if __name__ == "__main__":
     app.run(debug=True)
