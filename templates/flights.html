@@ -51,6 +51,32 @@
 
 				</section>
 
+					<form method="POST" action="{{ url_for('home') }}" style="display:flex;flex-direction:row;gap:20px;align-items:center;flex-wrap:wrap">
+							<div style="display:flex;flex-direction:column;gap:20px;align-items:center;flex:1 1 auto;">
+								<div style="display:flex;flex-direction:column;color:black;">
+									{{ form.name.label }}
+									{{ form.name }}
+								</div>
+								<div style="display:flex;flex-direction:column;color:black;">
+									{{ form.email.label }}
+									{{ form.email() }}
+								</div>
+							</div>
+							<div style="display:flex;flex-direction:column;gap:20px;align-items:center;flex:1 1 auto;">
+								<div style="display:flex;flex-direction:column;color:black;">
+									{{ form.fly_from.label }}
+									{{ form.fly_from }}
+								</div>
+								<div style="display:flex;flex-direction:column;color:black;">
+									{{ form.max_price.label }}
+									{{ form.max_price }}
+								</div>
+							</div>
+							<div style="flex:1 1 auto;">
+								{{ form.submit}}
+							</div>
+						</form>
+
 				<section id="cta">
 
 					<h2>Wildly Cheap Flights</h2>

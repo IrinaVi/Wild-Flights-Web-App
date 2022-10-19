@@ -46,26 +46,29 @@ def home():
     form = FlightsForm()
     return render_template("index.html", form = form)
 
-@app.route("/flights", methods = ['POST'])
+@app.route("/flights", methods = ['POST', 'GET'])
 def flights():
-    fly_from = request.form["fly_from"]
-    max_price = int(request.form["max_price"])
-    flight_search = FlightSearch()
-    iata_code = flight_search.get_iata_code(fly_from)
-    flight_inspiration = flight_search.flight_inspiration(iata_code,max_price)
-    all_flights = []
-    for i in range(0,11):
-        if flight_inspiration != None and i < len(flight_inspiration):
-            one_flight = {}
-            one_flight["Destination"] = flight_search.get_city_name(flight_inspiration[i]["Destination"])
-            one_flight["Departure Date"] = flight_inspiration[i]["Departure Date"]
-            one_flight["Return Date"] = flight_inspiration[i]["Return Date"]
-            one_flight["Price"] = flight_inspiration[i]["Price"]
-            all_flights.append(one_flight)
-        else:
-            break
-
-    return render_template("flights.html", origin = fly_from, price = max_price, flights = all_flights)
+    if request.method == 'POST':
+        fly_from = request.form["fly_from"]
+        max_price = int(request.form["max_price"])
+        flight_search = FlightSearch()
+        iata_code = flight_search.get_iata_code(fly_from)
+        flight_inspiration = flight_search.flight_inspiration(iata_code,max_price)
+        all_flights = []
+        for i in range(0,11):
+            if flight_inspiration != None and i < len(flight_inspiration):
+                one_flight = {}
+                one_flight["Destination"] = flight_search.get_city_name(flight_inspiration[i]["Destination"])
+                one_flight["Departure Date"] = flight_inspiration[i]["Departure Date"]
+                one_flight["Return Date"] = flight_inspiration[i]["Return Date"]
+                one_flight["Price"] = flight_inspiration[i]["Price"]
+                all_flights.append(one_flight)
+            else:
+                break
+        return render_template("flights.html", origin=fly_from, price=max_price, flights=all_flights)
+    else:
+        email_form = EmailForm()
+    return render_template("flights.html", origin = fly_from, price = max_price, flights = None, form = email_form)
 
 if __name__ == "__main__":
     app.run(debug=True)
