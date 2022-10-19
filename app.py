@@ -78,6 +78,9 @@ def subscription_submit():
             fly_from = request.form["fly_from"],
             max_price = int(request.form["max_price"])
         )
+        print("---------")
+        print(new_user)
+        print("---------")
         db.session.add(new_user)
         db.session.commit()
         return render_template("thank-you.html")
