@@ -47,6 +47,7 @@ def home():
 
 @app.route("/flights", methods = ['POST', 'GET'])
 def flights():
+    email_form = EmailForm()
     if request.method == 'POST':
         fly_from = request.form["fly_from"]
         max_price = int(request.form["max_price"])
@@ -64,9 +65,8 @@ def flights():
                 all_flights.append(one_flight)
             else:
                 break
-        return render_template("flights.html", origin=fly_from, price=max_price, flights=all_flights)
+        return render_template("flights.html", origin=fly_from, price=max_price, flights=all_flights, form=email_form)
     else:
-        email_form = EmailForm()
         return render_template("flights.html", origin = "London", price = 1000, flights = [], form = email_form)
 
 @app.route("/thank-you", methods = ["POST", "GET"])
