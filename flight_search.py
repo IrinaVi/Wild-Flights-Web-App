@@ -21,7 +21,7 @@ amadeus = Client(
 )
 
 TEQUILA_ENDPOINT = "https://tequila-api.kiwi.com"
-TEQUILA_API = "-ayM_uomzIm2U_mhU2kATirEIRWUeP0V"
+TEQUILA_API = "-a"
 
 
 class FlightSearch:
@@ -65,5 +65,9 @@ class FlightSearch:
                 flight_data.append(one_flight)
             return flight_data
         except:
+<<<<<<< HEAD
             print("Oops! error occurred.")
             return None
+=======
+            return None
+>>>>>>> 4712c1811d197257323773b5a7ad8a9738be6108
