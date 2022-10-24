@@ -1,17 +1,17 @@
 import smtplib
-import os
+from decouple import config
 
-ACCOUNT_SID = os.environ['ACCOUNT_SID']
-AUTH_TOKEN = os.environ['ACCOUNT_TOKEN']
+MY_EMAIL = config('MY_EMAIL')
+MY_PASSWORD = config('MY_PASSWORD')
 
 class NotificationManager:
 
     def send_email(self, email_to, email_text):
         with smtplib.SMTP("smtp.gmail.com", 587) as connection:
             connection.starttls()
-            connection.login(user=my_email, password=password)
+            connection.login(user=MY_EMAIL, password=MY_PASSWORD)
             connection.sendmail(
-                from_addr=my_email,
+                from_addr=MY_EMAIL,
                 to_addrs=email_to,
                 msg=email_text
             )

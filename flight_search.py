@@ -1,6 +1,6 @@
 from urllib.request import urlopen
 import requests
-from amadeus import Client, NetworkError
+from amadeus import Client, ResponseError
 import ssl
 from decouple import config
 
@@ -63,6 +63,6 @@ class FlightSearch:
                 }
                 flight_data.append(one_flight)
             return flight_data
-        except:
-            print("Oops! error occurred.")
+        except ResponseError as error:
+            print(f"Oops! {error} occurred.")
             return None
