@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField
-from wtforms.validators import DataRequired, URL
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
 from flask_sqlalchemy import SQLAlchemy
 from flight_search import FlightSearch
 from decouple import config
+from notification_manager import NotificationManager
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -54,7 +55,9 @@ def flights():
         flight_search = FlightSearch()
         iata_code = flight_search.get_iata_code(fly_from)
         flight_inspiration = flight_search.flight_inspiration(iata_code,max_price)
+        global all_flights
         all_flights = []
+        all_flights.append({"Origin": fly_from})
         for i in range(0,11):
             if flight_inspiration != None and i < len(flight_inspiration):
                 one_flight = {}
@@ -80,7 +83,10 @@ def subscription_submit():
         )
         db.session.add(new_user)
         db.session.commit()
-
+        all_flights = "Something"
+        if all_flights != []:
+            notification_manager = NotificationManager()
+            notification_manager.send_email("irinavik1805@gmail.com", request.form["name"])
 
         return render_template("thank-you.html")
     else:
