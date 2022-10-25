@@ -61,6 +61,7 @@ def flights():
         for i in range(0,11):
             if flight_inspiration != None and i < len(flight_inspiration):
                 one_flight = {}
+                one_flight["Origin"] = fly_from
                 one_flight["Destination"] = flight_search.get_city_name(flight_inspiration[i]["Destination"])
                 one_flight["Departure Date"] = flight_inspiration[i]["Departure Date"]
                 one_flight["Return Date"] = flight_inspiration[i]["Return Date"]
