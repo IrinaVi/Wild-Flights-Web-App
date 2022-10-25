@@ -57,7 +57,7 @@ def flights():
         flight_inspiration = flight_search.flight_inspiration(iata_code,max_price)
         global all_flights
         all_flights = []
-        all_flights.append({"Origin": fly_from})
+
         for i in range(0,11):
             if flight_inspiration != None and i < len(flight_inspiration):
                 one_flight = {}
