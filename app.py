@@ -1,11 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from flask_sqlalchemy import SQLAlchemy
 from flight_search import FlightSearch
 from decouple import config
-from notification_manager import NotificationManager
 from instant_email import send_instant_email
 
 app = Flask(__name__)
@@ -87,7 +86,8 @@ def subscription_submit():
 
     if all_flights != []:
         send_instant_email(request.form["name"], request.form["name"], all_flights)
-        return render_template("thank-you.html")
+
+    return render_template("thank-you.html")
 
 
 if __name__ == "__main__":
