@@ -1,7 +1,8 @@
 from urllib.request import urlopen
 import requests
-from amadeus import Client, ResponseError
+from amadeus import Client, ResponseError, NetworkError
 import ssl
+import datetime
 from decouple import config
 
 CLIENT_ID = config('CLIENT_ID')
