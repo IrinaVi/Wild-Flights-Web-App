@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="../static/assets/css/main.css" />
 	</head>
 	<body class="landing is-preload">
-		<div id="page-wrapper">
+		<header id="page-wrapper">
 
 			<!-- Banner -->
 				<section id="banner">
@@ -47,6 +47,40 @@
 							{% endif %}
 						</header>
 						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
+					</section>
+
+					<section class="box special features">
+
+						<header class="major">
+							<h3>Subscribe to our service</h3>
+							<p>We send emails with the information about the latest flights every Friday!</p>
+								<form method="POST" action="{{ url_for('subscription_submit') }}" style="display:flex;flex-direction:row;align-items:center;flex-wrap:wrap">
+									<div style="display:flex;flex-direction:column;align-items:center;flex:1 1 auto;">
+										<div style="display:flex;flex-direction:column;color:black !important;">
+											{{ form.name.label }}
+											{{ form.name }}
+										</div>
+										<div style="display:flex;flex-direction:column;color:black;">
+											{{ form.email.label }}
+											{{ form.email() }}
+										</div>
+									</div>
+									<div style="display:flex;flex-direction:column;align-items:center;flex:1 1 auto;">
+										<div style="display:flex;flex-direction:column;color:black;">
+											{{ form.fly_from.label }}
+											{{ form.fly_from }}
+										</div>
+										<div style="display:flex;flex-direction:column;color:black;">
+											{{ form.max_price.label }}
+											{{ form.max_price }}
+										</div>
+									</div>
+									<div style="flex:1 1 auto;">
+										{{ form.submit}}
+									</div>
+								</form>
+							</section>
+						</header>
 					</section>
 
 				</section>
