@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flight_search import FlightSearch
 from decouple import config
 from notification_manager import NotificationManager
+from instant_email import send_instant_email
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -73,25 +74,21 @@ def flights():
     else:
         return render_template("flights.html", origin = "London", price = 1000, flights = [], form = email_form)
 
-@app.route("/thank-you", methods = ["POST", "GET"])
+@app.route("/thank-you", methods = ["POST"])
 def subscription_submit():
-    if request.method == "POST":
-        new_user = User(
-            name = request.form["name"],
-            email = request.form['email'],
-            fly_from = request.form["fly_from"],
-            max_price = int(request.form["max_price"])
-        )
-        db.session.add(new_user)
-        db.session.commit()
-        all_flights = "Something"
-        if all_flights != []:
-            notification_manager = NotificationManager()
-            notification_manager.send_email("irinavik1805@gmail.com", request.form["name"])
+    new_user = User(
+        name = request.form["name"],
+        email = request.form['email'],
+        fly_from = request.form["fly_from"],
+        max_price = int(request.form["max_price"])
+    )
+    db.session.add(new_user)
+    db.session.commit()
 
+    if all_flights != []:
+        send_instant_email(request.form["name"], request.form["name"], all_flights)
         return render_template("thank-you.html")
-    else:
-        return render_template("thank-you.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
