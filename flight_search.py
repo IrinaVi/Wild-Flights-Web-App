@@ -1,8 +1,7 @@
 from urllib.request import urlopen
 import requests
-from amadeus import Client, ResponseError, NetworkError
+from amadeus import Client, ResponseError
 import ssl
-import datetime
 from decouple import config
 
 CLIENT_ID = config('CLIENT_ID')
@@ -25,7 +24,6 @@ TEQUILA_API = config('TEQUILA_API')
 
 
 class FlightSearch:
-    #This class is responsible for talking to the Flight Search API.
     def get_iata_code(self, city_name):
         location_endpoint = f"{TEQUILA_ENDPOINT}/locations/query"
         headers = {"apikey": TEQUILA_API}
@@ -49,9 +47,6 @@ class FlightSearch:
         try:
             response = amadeus.shopping.flight_destinations.get(origin=origin, oneWay=False, nonStop=False, viewBy="COUNTRY", maxPrice=max_price)
             all_offers = response.data
-            print("------------------")
-            print(all_offers)
-            print("------------------")
             flight_data = []
             for offer in all_offers:
                 one_flight = {
