@@ -54,6 +54,11 @@ corresponding password.</p>
 <p>To make the app secure and protect sensitive information, I stored all sensitive data as environment variables which
 were added separately to Heroku so the app would work when hosted.</p>
 
+## App screenshots
+
+<h3>App in the browser</h3>
+![My Image](wild-flights.png)
+
 ## Project dependencies
 
 1. Install latest python version - https://www.python.org/downloads/
