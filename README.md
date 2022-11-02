@@ -54,6 +54,12 @@ corresponding password.</p>
 <p>To make the app secure and protect sensitive information, I stored all sensitive data as environment variables which
 were added separately to Heroku so the app would work when hosted.</p>
 
+## Project dependencies
+
+1. Install latest python version - https://www.python.org/downloads/
+2. To install all other required modules from the requirements file use the following command:
+`pip install -r requirements.txt`
+
 ## How to use the project
 
 <br>To run this project locally, run the following command in the terminal:</br>
