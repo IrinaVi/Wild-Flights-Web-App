@@ -58,11 +58,11 @@ were added separately to Heroku so the app would work when hosted.</p>
 ## App screenshots
 
 <h3>App in the browser</h3>
-<br>
+
 ![My Image](https://github.com/IrinaVi/Wild-Flights-Web-App/blob/flights-form/wild-flights.png)
 
 <h3>Email sample</h3>
-<br>
+
 ![My Image](https://github.com/IrinaVi/Wild-Flights-Web-App/blob/flights-form/wild-flights-email-sample.png)
 
 ## Project dependencies
