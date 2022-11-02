@@ -59,6 +59,9 @@ were added separately to Heroku so the app would work when hosted.</p>
 <h3>App in the browser</h3>
 ![My Image](wild-flights.png)
 
+<h3>Email sample</h3>
+![My Image](wild-flights-email-sample.png)
+
 ## Project dependencies
 
 1. Install latest python version - https://www.python.org/downloads/
