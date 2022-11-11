@@ -79,6 +79,8 @@ def flights():
 
 @app.route("/thank-you", methods = ["POST"])
 def subscription_submit():
+
+
     new_user = User(
         name = request.form["name"],
         email = request.form['email'],
