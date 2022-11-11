@@ -18,5 +18,7 @@ def send_instant_email(email_to, name, flights):
         text += ending
     else:
         text = f"Subject: Sorry, no flights available! \n\n"
-
+    print("TEXT")
+    print(text)
+    print("TEXT")
     notification_manager.send_email(email_to, text)

@@ -89,7 +89,7 @@ def subscription_submit():
     db.session.commit()
 
     if all_flights != []:
-        send_instant_email(request.form["name"], request.form["name"], all_flights)
+        send_instant_email(request.form["email"], request.form["name"], all_flights)
 
     return render_template("thank-you.html")
 

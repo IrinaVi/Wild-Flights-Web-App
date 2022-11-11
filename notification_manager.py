@@ -13,6 +13,6 @@ class NotificationManager:
             connection.sendmail(
                 from_addr=MY_EMAIL,
                 to_addrs=email_to,
-                msg=email_text
+                msg=email_text.encode('utf-8')
             )
 
