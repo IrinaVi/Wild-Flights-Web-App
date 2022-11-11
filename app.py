@@ -70,6 +70,9 @@ def flights():
                 all_flights.append(one_flight)
             else:
                 break
+        print("ALL FLIGHTS")
+        print(all_flights)
+        print("ALL FLIGHTS")
         return render_template("flights.html", origin=fly_from, price=max_price, flights=all_flights, form=email_form)
     else:
         return render_template("flights.html", origin = "London", price = 1000, flights = [], form = email_form)
@@ -89,7 +92,6 @@ def subscription_submit():
         send_instant_email(request.form["name"], request.form["name"], all_flights)
 
     return render_template("thank-you.html")
-
 
 if __name__ == "__main__":
     app.run(debug=True)
