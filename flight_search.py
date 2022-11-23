@@ -3,9 +3,12 @@ import requests
 from amadeus import Client, ResponseError
 import ssl
 from decouple import config
+from ratelimit import limits
 
 CLIENT_ID = config('CLIENT_ID')
 CLIENT_SECRET = config('CLIENT_SECRET')
+
+ONE_DAY = 86400
 
 def ssl_disabled_urlopen(endpoint):
     context = ssl._create_unverified_context()
@@ -43,6 +46,7 @@ class FlightSearch:
         country = results[0]['country']['name']
         return [city_name, country]
 
+    @limits(calls=10, period=ONE_DAY)
     def flight_inspiration(self, origin, max_price):
         try:
             response = amadeus.shopping.flight_destinations.get(origin=origin, oneWay=False, nonStop=False, viewBy="COUNTRY", maxPrice=max_price)
